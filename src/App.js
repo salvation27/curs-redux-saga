@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+// import React, { useState } from "react";
+import { useSelector,useDispatch} from 'react-redux'
+import { incrace_count, decrace_count } from "./redux/actions/actionCreator";
 
-function App() {
+const App = () => {
+  const store = useSelector(store=>store)
+  console.log(store)
+
+  const dispatch = useDispatch()
+
+// ======================================================
+  // const [count, setCount] = useState(0);
+
+  // const handelChangeCount = (str) => {
+  //   str === "d" ? setCount(count - 1) : setCount(count + 1);
+  // };
+// ============================================================
+
+  const handelChangeCount = (str) => {
+    str === "d" ? dispatch(decrace_count()) : dispatch(incrace_count());
+  };
+
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <button
+        disabled={store.counter.count <= 0}
+        onClick={() => handelChangeCount("d")}
+      >
+        -
+      </button>
+      {store.counter.count}
+      <button onClick={() => handelChangeCount("i")}>+</button>
     </div>
   );
-}
+};
 
 export default App;

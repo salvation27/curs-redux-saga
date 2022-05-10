@@ -1,0 +1,2 @@
+export const INCRASE_COUNT = "INCRASE_COUNT";
+export const DECRASE_COUNT = "DECRASE_COUNT";
